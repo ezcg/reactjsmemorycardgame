@@ -7,7 +7,7 @@ export default function Card ({cardObj, activeCardsArr}) {
     let suit = cardObj['suit'];
 
     let displayed = 'cover';
-    if (activeCardsArr[0] &&activeCardsArr[0]['rank'] === rank && activeCardsArr[0]['suit'] === suit) {
+    if (activeCardsArr[0] && activeCardsArr[0]['rank'] === rank && activeCardsArr[0]['suit'] === suit) {
         displayed = 'face';
     }
     if (activeCardsArr[1] && activeCardsArr[1]['rank'] === rank && activeCardsArr[1]['suit'] === suit) {

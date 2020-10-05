@@ -31,7 +31,7 @@ export default function Table ({deckArr, restart, deviceType}) {
     if (activeCardsArr.length === 2) {
       setTimeout(evaluatePicks, 700, activeCardsArr);
     }
-    setClicks(clicks + 1);// this is necessary to get it to re-render, setActiveCardsArr above does not trigger re-render!
+    setClicks(clicks + 1);
 
   }
 

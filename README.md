@@ -10,6 +10,8 @@ The card component decides what to show for the card (card face, back, match res
 
 The base component does not have any state and will be a re-usable component for managing card logic in different games.  
 
+Play it: http://ezcg.com/reactjsmemorygame/index.html
+
 ------------
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

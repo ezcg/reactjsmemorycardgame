@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css';
-import Table from './components/table.js';
+import Dealer from './components/dealer.js';
 import { GlobalProvider } from './context/GlobalState';
 import Scoreboard from "./components/scoreboard";
 
@@ -10,7 +10,7 @@ function App() {
     <GlobalProvider>
       <div className="App">
       <Scoreboard />
-      <Table />
+      <Dealer />
       </div>
     </GlobalProvider>
   );

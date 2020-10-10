@@ -15,7 +15,8 @@ export function getDeviceType() {
   return deviceType;
 }
 
-export function getDeckArr(deviceType) {
+export function getDeckArr() {
+  let deviceType = this.getDeviceType();
   let deckArr = this.createDeck(deviceType);
   deckArr = this.shuffle(deckArr);
   return deckArr;
@@ -23,7 +24,7 @@ export function getDeckArr(deviceType) {
 
 export function createDeck(deviceType) {
 
-  let max = 14;
+  let max = 4;
   if (deviceType === 'mobile') {
     max = 7;
   }

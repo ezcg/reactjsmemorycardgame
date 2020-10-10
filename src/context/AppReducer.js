@@ -28,6 +28,11 @@ export default (state, action) => {
                 right:0,
                 wrong:0
             };
+        case 'ACTIVE_CARDS':
+            return {
+                ...state,
+                activeCardsArr:action.payload
+            }
 
         default: return state;
     }

@@ -5,7 +5,8 @@ const initialState = {
     right:0,
     wrong:0,
     message:'',
-    gameover:0
+    gameover:0,
+    activeCardsArr:[]
 }
 
 export const GlobalContext = createContext(initialState);
@@ -47,16 +48,26 @@ export const GlobalProvider = ({ children }) => {
         });
     }
 
+    function setActiveCardsArr(arr) {
+        dispatch({
+            type: 'ACTIVE_CARDS',
+            payload: arr
+        });
+
+    }
+
     return (<GlobalContext.Provider value={{
         right:state.right,
         wrong:state.wrong,
         message:state.message,
         gameover:state.gameover,
+        activeCardsArr:state.activeCardsArr,
         setRight,
         setWrong,
         setMessage,
         setGameover,
-        reset
+        reset,
+        setActiveCardsArr
     }}>
         {children}
     </GlobalContext.Provider>);

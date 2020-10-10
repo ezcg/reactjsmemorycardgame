@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {GlobalContext} from "../context/GlobalState";
+
 let Base = require('../helpers/base.js');
 
-export default function Card ({cardObj, activeCardsArr}) {
+export default function Card ({cardObj}) {
+
+    const { activeCardsArr } = useContext(GlobalContext);
 
     let rank = cardObj['rank'];
     let suit = cardObj['suit'];
@@ -16,7 +20,7 @@ export default function Card ({cardObj, activeCardsArr}) {
     let key =  rank + "_" + suit + "_" + displayed;
 
     let displayCard = '';
-    if (suit === 'empty') {
+    if (suit === 'correctcheckmark') {
         displayCard = '&#10004;';
     } else if (displayed === 'cover') {
         displayCard = "<span style='color:black'>ezcg</span>";

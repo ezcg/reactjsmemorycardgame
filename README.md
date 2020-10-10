@@ -1,14 +1,14 @@
-I broke it down into 4 components; table, card, scoreboard and base. 
+I broke it down into 4 components; dealer, table, card, scoreboard  
 
-The table component manages the interactions and state and sends the results to the card component and the scoreboard component. 
+The dealer component gets a shuffled deck and deals the cards to the table. 
 
-There can be 2 active cards and they must be evaluated to see if they are a match. 
+The table component displays the cards and attaches click functionality to the card. If a card is clicked on, the methods in the dealer component get called to evaluate the clicks. 
 
-The table is the state manager that manages the deck of cards, sending data to the card component for display. Interactions with the card causes data to be sent back up from the child card component to the table for evaluation. The results of the evaluation are then sent back down to the card and scoreboard components for display. 
+The card component determines whether to display the card face, back or successful match.
 
-The card component decides what to show for the card (card face, back, match result or  failed match result). 
+The messaging, score and gameover status are managed in GlobalContext.
 
-The base component does not have any state and will be a re-usable component for managing card logic in different games.  
+The helpers/base.js does not have any state and will be a re-usable component for managing card logic in different games.  
 
 Play it: http://ezcg.com/reactjsmemorygame/index.html
 

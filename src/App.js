@@ -1,34 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './App.css';
 import Table from './components/table.js';
-let helpersBase = require('./helpers/base');
+import { GlobalProvider } from './context/GlobalState';
+import Scoreboard from "./components/scoreboard";
 
-function App({deviceType}) {
-
-  function getDeckArr(deviceType) {
-    let deckArr = helpersBase.createDeck(deviceType);
-    deckArr = helpersBase.shuffle(deckArr);
-    return deckArr;
-  }
-
-  const [numPlays, setNumPlays] = useState(1);
-  const [deckArr, setDeckArr] = useState(getDeckArr(deviceType));
-
-  function restart() {
-    let deckArr = getDeckArr(deviceType);
-    setNumPlays(numPlays + 1);
-    setDeckArr(deckArr);
-  }
+function App() {
 
   return (
-    <div key={"numPlays_" + numPlays} className="App">
-    <Table
-      deckArr={deckArr}
-      restart = {() => restart()}
-      deviceType = {deviceType}
-    />
-    </div>
+    <GlobalProvider>
+      <div className="App">
+      <Scoreboard />
+      <Table />
+      </div>
+    </GlobalProvider>
   );
+
 }
 
 export default App;

@@ -19,7 +19,7 @@ export default function Card ({cardObj, activeCardsArr}) {
     if (suit === 'empty') {
         displayCard = '&#10004;';
     } else if (displayed === 'cover') {
-        displayCard = '<img class="cardCover" src="//s3.us-east-2.amazonaws.com/ezcg.com/reactjsmemorygame/logo192.png" />';
+        displayCard = "<span style='color:black'>ezcg</span>";
     } else {
         let rankDisplay = Base.convertRank(rank);
         let htmlSuit = '&spades;';

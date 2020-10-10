@@ -1,3 +1,25 @@
+import MobileDetect from "mobile-detect";
+
+export function getDeviceType() {
+  let userAgent;
+  let deviceType;
+  userAgent = navigator.userAgent;
+  const md = new MobileDetect(userAgent);
+  if (md.tablet()) {
+    deviceType = "tablet";
+  } else if (md.mobile()) {
+    deviceType = "mobile";
+  } else {
+    deviceType = "desktop";
+  }
+  return deviceType;
+}
+
+export function getDeckArr(deviceType) {
+  let deckArr = this.createDeck(deviceType);
+  deckArr = this.shuffle(deckArr);
+  return deckArr;
+}
 
 export function createDeck(deviceType) {
 

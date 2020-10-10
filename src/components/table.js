@@ -1,16 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Card from '../components/card.js'
-import Scoreboard from '../components/scoreboard.js'
+import { GlobalContext } from '../context/GlobalState';
 
-export default function Table ({deckArr, restart, deviceType}) {
+let helpersBase = require('../helpers/base');
 
-  const [gameover, setGameover] = useState(0);
-  const [msg, setMsg] = useState('');
-  const [correct, setCorrect] = useState(0);
-  const [wrong, setWrong] = useState(0);
+export default function Table () {
+
+  const { reset, setWrong, right, setRight, setMessage, gameover, setGameover } = useContext(GlobalContext);
+
   const [activeCardsArr, setActiveCardsArr] = useState([]);
-  const [clicks, setClicks] = useState(0);
 
+  const deviceType = helpersBase.getDeviceType();
+  const [deckArr, setDeckArr] = useState(helpersBase.getDeckArr(deviceType));
+
+  function restart() {
+    reset();
+    let deckArr = helpersBase.getDeckArr(deviceType);
+    setDeckArr(deckArr);
+  }
+
+  // Make sure the card clicked on is valid and then evaluate if 2 are currently clicked on
   function mngActiveCards(cardObj) {
     // Prevent clicking on the same card twice
     if (activeCardsArr.length === 1 && activeCardsArr[0]['rank'] === cardObj['rank'] && activeCardsArr[0]['suit'] === cardObj['suit']) {
@@ -24,26 +33,28 @@ export default function Table ({deckArr, restart, deviceType}) {
     if (activeCardsArr.length === 2) {
       return;
     }
+    // If this is the second click, the second card clicked on has not been added to the activeCardsArr yet.
     if (activeCardsArr.length < 2) {
-      activeCardsArr.push(cardObj);
-      setActiveCardsArr(activeCardsArr);
+      let tmpActiveCardsArr = [...activeCardsArr, cardObj];
+      setActiveCardsArr(tmpActiveCardsArr);
+      if (tmpActiveCardsArr.length === 2) {
+        setTimeout(evaluatePicks, 700, tmpActiveCardsArr);
+      }
     }
-    if (activeCardsArr.length === 2) {
-      setTimeout(evaluatePicks, 700, activeCardsArr);
-    }
-    setClicks(clicks + 1);
 
   }
 
+  // Evaluate if the 2 cards clicked on match, set score, messaging, set activeCardsArr to empty
   function evaluatePicks(activeCardsArr) {
 
     if (activeCardsArr[0]['rank'] === activeCardsArr[1]['rank']) {
-      setCorrect(correct + 1);
-      if (correct === deckArr.length/2 - 1) {
-        setMsg("VICTORY!!!");
+      setRight(1);
+      if (right === deckArr.length/2 - 1) {
+        setMessage("VICTORY!!!");
         setGameover(1);
       }
       deckArr.forEach((cardObj, i) => {
+        // set the back of the card to be displayed
         if (cardObj['rank'] === activeCardsArr[0]['rank'] && cardObj['suit'] === activeCardsArr[0]['suit']) {
            deckArr[i]['suit'] = 'empty';
         } else if (cardObj['rank'] === activeCardsArr[1]['rank'] && cardObj['suit'] === activeCardsArr[1]['suit']) {
@@ -51,7 +62,7 @@ export default function Table ({deckArr, restart, deviceType}) {
         }
       });
     } else {
-      setWrong(wrong + 1);
+      setWrong(1);
     }
     setActiveCardsArr([]);
 
@@ -64,8 +75,7 @@ export default function Table ({deckArr, restart, deviceType}) {
     extraStyle = {width: '326px'};
   }
 
-  return <div className="tableCont" key='table' style={extraStyle}>
-    <Scoreboard correct={correct} wrong={wrong} msg={msg} />
+  return <div className="tableCont" style={extraStyle}>
     <button className='restartBtn' style={restartBtnStyle} onClick={() => restart()}>Play Again?</button>
     <div className="cb"></div>
     {deckArr.map((cardObj, i) => {
@@ -79,4 +89,5 @@ export default function Table ({deckArr, restart, deviceType}) {
     })}
     <div style={{clear:'both'}}></div>
   </div>
+
 }

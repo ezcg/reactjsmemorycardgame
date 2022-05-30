@@ -65,12 +65,7 @@ export default function Table () {
 
   let restartBtnStyle = gameover ? {display:'block'} : {display:'none'};
 
-  let extraStyle = {};
-  if (helpersBase.getDeviceType() === 'mobile') {
-    extraStyle = {width: '326px'};
-  }
-
-  return <div className="tableCont" style={extraStyle} key={"key_" + activeCardsArr.length}>
+  return <div className="tableCont" key={"key_" + activeCardsArr.length}>
     <button className='restartBtn' style={restartBtnStyle} onClick={() => restart()}>Play Again?</button>
     <div className="cb"></div>
     {deckArr.map((cardObj, i) => {

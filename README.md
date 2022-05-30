@@ -1,18 +1,12 @@
-I broke it down into 3 components; table, card, scoreboard  
+The master branch uses ContextAPI. The redux branch uses redux.
 
-The table component gets a shuffled deck and deals the cards to the table. 
+I broke it down into 3 main 'features' ; Table, Card, and Scoreboard  
 
-The table component displays the cards and attaches click functionality to the card. 
-
-If a card is clicked on, the methods in the table component evaluate the clicks. 
-
-The card component determines whether to display the card face, back or successful match.
-
-The messaging, score and gameover status are managed in GlobalContext.
-
-The helpers/base.js does not have any state and will be a re-usable component for managing card logic in different games.  
+The helpers/base.js does not have any state.  
 
 ------------
+
+To play:
 
 Remove/delete the node_modules folder if it exists.
 Remove/delete the package-json.lock and yarn.lock file if they exist.

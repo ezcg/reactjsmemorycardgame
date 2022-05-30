@@ -26,7 +26,7 @@ export function createDeck() {
 
   let suitArr = ['heart','spade','diamond', 'club']
 
-  let numCards = 8 // keep it simple
+  let numCards = 10 // keep it simple
   let maxPairs = numCards / 2 // Two of each card
   let maxSuitsSet = 2 // only use 2 suits
 

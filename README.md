@@ -1,3 +1,7 @@
+This is just a look at the different wiring involved when using ContextAPI vs Redux.
+
+The mast branch is ContextAPI. To view the redux version, switch to the Redux branch.
+
 I broke it down into 3 components; table, card, scoreboard  
 
 The table component gets a shuffled deck and deals the cards to the table. 

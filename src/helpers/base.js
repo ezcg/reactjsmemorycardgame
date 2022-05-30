@@ -15,26 +15,33 @@ export function getDeviceType() {
   return deviceType;
 }
 
-export function getDeckArr() {
+export function getDeckArr(numCards) {
   let deviceType = this.getDeviceType();
-  let deckArr = this.createDeck(deviceType);
+  let deckArr = this.createDeck(deviceType, numCards);
   deckArr = this.shuffle(deckArr);
   return deckArr;
 }
 
-export function createDeck(deviceType) {
+export function createDeck() {
 
-  let max = 4;
-  if (deviceType === 'mobile') {
-    max = 7;
-  }
+  let suitArr = ['heart','spade','diamond', 'club']
+
+  let numCards = 8 // keep it simple
+  let maxPairs = numCards / 2 // Two of each card
+  let maxSuitsSet = 2 // only use 2 suits
 
   let deckArr = [];
-  let suitArr = ['heart', 'club', 'diamond', 'spade'];
-  for(let suit of suitArr) {
-    for(let i = 2; i <= max; i++) {
-      let cardObj = {rank: i, suit: suit};
+  // The card suit isn't used to match. A 4 of hearts will match a 4 of spades.
+  // The card suit is used to uniquely identify the card on the table.
+  for(let i = 1; i <= maxPairs; i++ ){
+    let numSuitsSet = 0
+    for(let j in suitArr) {
+      let cardObj = { rank: i, suit: suitArr[j] };
       deckArr.push(cardObj);
+      numSuitsSet++
+      if (numSuitsSet === maxSuitsSet) {
+        break
+      }
     }
   }
   return deckArr;
@@ -60,6 +67,7 @@ export function shuffle(deckArr) {
 
 }
 
+// not used, but if a full deck is used (m
 export function convertRank(rank) {
 
   switch(rank) {
@@ -70,6 +78,7 @@ export function convertRank(rank) {
     case 13:
       return "King";
     case 14:
+    case 1:
       return "Ace";
     default:
       return rank;

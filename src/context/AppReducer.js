@@ -1,4 +1,4 @@
-export default (state, action) => {
+let reducer = (state, action) => {
     switch (action.type) {
         case 'SCORE_WRONG':
             return {
@@ -37,3 +37,5 @@ export default (state, action) => {
         default: return state;
     }
 }
+
+export default reducer

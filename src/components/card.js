@@ -23,7 +23,7 @@ export default function Card ({cardObj}) {
     if (suit === 'correctcheckmark') {
         displayCard = '&#10004;';
     } else if (displayed === 'cover') {
-        displayCard = "<span style='color:black'>ezcg</span>";
+        displayCard = "<span style='color:black'>ezCG</span>";
     } else {
         let rankDisplay = Base.convertRank(rank);
         let htmlSuit = '&spades;';

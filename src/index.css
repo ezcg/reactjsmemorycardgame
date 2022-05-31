@@ -69,6 +69,11 @@ code {
   float:left;
   border:0px solid black;
 }
+.msg {
+
+  color:#000000;
+  font-weight:bold;
+}
 .scoreWrong {
   width:20px;
 }
@@ -77,11 +82,6 @@ code {
   width:20px;
   color:green;
 }
-.msg {
-  width:290px;
-  color:#000000;
-  font-weight:bold;
-}
 .restartBtn {
   margin:4px auto;
   width:120px;
@@ -89,6 +89,7 @@ code {
   border-radius:5px;
   cursor:pointer;
   background-color:#dddddd;
+  float:right;
 }
 button.restartBtn:hover {
   background-color:#A9A9A9;

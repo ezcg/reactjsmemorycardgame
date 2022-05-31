@@ -6,7 +6,7 @@ let helpersBase = require('../helpers/base');
 
 export default function Table () {
 
-  const { activeCardsArr, setActiveCardsArr, reset, setWrong, right, setRight, setMessage, gameover, setGameover } = useContext(GlobalContext);
+  const { activeCardsArr, setActiveCardsArr, reset, setWrong, right, setRight, message, setMessage, gameover, setGameover } = useContext(GlobalContext);
 
   const [deckArr, setDeckArr] = useState(helpersBase.getDeckArr());
 
@@ -50,7 +50,6 @@ export default function Table () {
       }
       deckArr.forEach((cardObj, i) => {
         // set the 'correct checkmark' to be displayed if the rank and suit between the 2 active cards are the same
-        console.log(cardObj['suit'], activeCardsArr[0]['suit'])
         if (cardObj['rank'] === activeCardsArr[0]['rank'] && cardObj['suit'] === activeCardsArr[0]['suit']) {
            deckArr[i]['suit'] = 'correctcheckmark';
         } else if (cardObj['rank'] === activeCardsArr[1]['rank'] && cardObj['suit'] === activeCardsArr[1]['suit']) {
@@ -66,6 +65,7 @@ export default function Table () {
   let restartBtnStyle = gameover ? {display:'block'} : {display:'none'};
 
   return <div className="tableCont" key={"key_" + activeCardsArr.length}>
+    <div className="msg">{message}</div>
     <button className='restartBtn' style={restartBtnStyle} onClick={() => restart()}>Play Again?</button>
     <div className="cb"></div>
     {deckArr.map((cardObj, i) => {
